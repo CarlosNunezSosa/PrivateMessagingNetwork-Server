@@ -18,10 +18,14 @@ public class ServerThread extends Thread {
             PrintWriter writer = new PrintWriter(output, true);
 
             String text = "";
-            do {
-
-
-            } while (!Objects.equals(text, "Close"));
+            while(!text.equals("Close")){
+                String spacedString = "";
+                for(int i=0;i<text.length();i++){
+                    spacedString = spacedString + text.charAt(i)+" ";
+                }
+                writer.println("Server: " + spacedString);
+                text = reader.readLine();
+            }
             socket.close();
         } catch (IOException ex) {
             System.out.println("Server exception: " + ex.getMessage());
